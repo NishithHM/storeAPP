@@ -1,21 +1,30 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView, Image} from 'react-native';
-import { Provider as PaperProvider, List} from 'react-native-paper';
-import CategoryDisplay from './categoryDisplay'
-
+import CategoryDisplay from './categoryDisplay';
+import UpperBar from '../common/upperBar';
 import  Styles from './styles_category';
+import { Searchbar } from 'react-native-paper';
 class Category extends Component{
   
     static navigationOptions={
         header:null
-    } 
+    }
 
     navigateToList(groupName){
         this.props.navigation.navigate('List',{name: groupName})
         
     }
+
+    _goBack = () => {
+        this.props.navigation.goBack();
+    };
+
+
+  _onMore = () => {
+      this.props.navigation.openDrawer();
+  };
     
-     
+    
 
     render(){
         const {mainView,mainCategoryHolder, categoryListHolder,heading,categoryText} =Styles
@@ -35,7 +44,8 @@ class Category extends Component{
         return(
             
            <ScrollView>
-           
+           <UpperBar moreBar={this._onMore} backBar={this._goBack} searchBar={this._onSearch} title={"Select Properties"}
+           />
            <View style={mainView}>
             <View style={mainCategoryHolder}>
             <View style={heading}>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, TextInput,Text, Button, Alert, Image} from 'react-native';
 import styles from '../login/styles_login';
 import Swiper from 'react-native-swiper';
+import UpperBar from '../common/upperBar';
 
 class Login extends Component{ 
     static navigationOptions={
@@ -22,6 +23,15 @@ class Login extends Component{
         }])
     
     }
+    _goBack = () => {
+        this.props.navigation.goBack();
+    };
+
+  _onSearch = () => console.log('Searching');
+
+  _onMore = () => {
+      this.props.navigation.openDrawer();
+  };
     render(){
         const {heading, input, parent, imageBox, loginBox, button}=styles
         const imageSources=[require('../assets/01.jpg'),require('../assets/02.jpg'),
@@ -34,6 +44,8 @@ class Login extends Component{
         }
         return(
             <View style={parent}>
+            <UpperBar moreBar={this._onMore} backBar={this._goBack} searchBar={this._onSearch} title={"Select Categories"}
+           />
             <View style={imageBox}>
             <Swiper showsButtons={true} autoplay={true}>
                {imageViewer}

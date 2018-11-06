@@ -17,7 +17,9 @@ export default class App extends Component{
     }
 }
 const DrawerStack = createDrawerNavigator({
- login: Login,
- category : Category,
- List : Example
+ //Home: Home,
+ Login: Login,
+ Category : Category,
+ List : Example,
+ 
  })
